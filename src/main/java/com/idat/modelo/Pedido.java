@@ -38,6 +38,12 @@ public class Pedido implements Serializable{
 	private Date fecha;
 	@Column(name = "total")
 	private BigDecimal total;
+	@Column(name = "mesa")
+	private Integer mesa;
+	@Column(name = "listo")
+	private boolean listo;
+	@Column(name = "pago")
+	private boolean pago;
 	@ManyToOne
 	@JoinColumn(name = "tipopedido", referencedColumnName = "idTipoPedido")
 	private TipoPedido tipoPedido;	
@@ -92,6 +98,31 @@ public class Pedido implements Serializable{
 	public void setPedidoPlatoPed(List<PedidoPlato> pedidoPlatoPed) {
 		this.pedidoPlatoPed = pedidoPlatoPed;
 	}
+	public int getMesa() {
+		return mesa;
+	}
+
+	public void setMesa(int mesa) {
+		this.mesa = mesa;
+	}
+
+	public boolean isListo() {
+		return listo;
+	}
+
+	public void setListo(boolean listo) {
+		this.listo = listo;
+	}
+
+	public boolean isPago() {
+		return pago;
+	}
+
+	public void setPago(boolean pago) {
+		this.pago = pago;
+	}
+	
+	
 	
 
 }

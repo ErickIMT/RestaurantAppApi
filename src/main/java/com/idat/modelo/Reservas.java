@@ -24,8 +24,10 @@ public class Reservas implements Serializable{
 	private Integer idReserva;
 	@Column(name="mesa")
 	private Integer mesa;
-	@Column(name="fechaHora")
-	private Date fechaHora;
+	@Column(name="fecha")
+	private Date fecha;
+	@Column(name = "hora")
+	private String hora;
 	@Column(length = 150, name = "nombreCliente")
 	private String nombreCliente;
 	
@@ -41,11 +43,17 @@ public class Reservas implements Serializable{
 	public void setMesa(Integer mesa) {
 		this.mesa = mesa;
 	}
-	public Date getFechaHora() {
-		return fechaHora;
+	public Date getFecha() {
+		return fecha;
 	}
-	public void setFechaHora(Date fechaHora) {
-		this.fechaHora = fechaHora;
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+	public String getHora() {
+		return hora;
+	}
+	public void setHora(String hora) {
+		this.hora = hora;
 	}
 	public String getNombreCliente() {
 		return nombreCliente;

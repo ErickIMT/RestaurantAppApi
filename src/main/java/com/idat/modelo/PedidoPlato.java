@@ -28,8 +28,6 @@ public class PedidoPlato implements Serializable{
 	private Integer idPedidoPlato;
 	@Column(name = "cantidad")
 	private int cantidad;
-	@Column(name = "listo")
-	private boolean listo;
 	@ManyToOne
 	@JoinColumn(name = "pedido", referencedColumnName = "idPedido")
 	@JsonBackReference(value = "pedidoplato_pedido")
@@ -57,12 +55,6 @@ public class PedidoPlato implements Serializable{
 	}
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
-	}
-	public boolean isListo() {
-		return listo;
-	}
-	public void setListo(boolean listo) {
-		this.listo = listo;
 	}
 	public Pedido getPedido() {
 		return pedido;
