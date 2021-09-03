@@ -23,7 +23,10 @@ public class PedidoServicio {
 	
 	//listado para Web
 	public Page<Pedido> listBypags(Pageable pageable){
-		return repoPed.findAll(pageable);
+		
+		return repoPed.getListaPedidosPorPreparar(pageable);
+		
+		//return repoPed.findAll(pageable);
 	}
 
 	//listado para Android
@@ -64,6 +67,7 @@ public class PedidoServicio {
 		//Set False campos de listo y pago
 		pedido.setListo(false);
 		pedido.setPago(false);
+		
 		
 		//Asignar Id del pedido a la Tabla M-M (PedidoPlato)		
 		List<PedidoPlato> lista = pedido.getPedidoPlatoPed();
