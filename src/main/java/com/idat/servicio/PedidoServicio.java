@@ -1,5 +1,6 @@
 package com.idat.servicio;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.idat.modelo.Pedido;
 import com.idat.modelo.PedidoPlato;
+import com.idat.modelo.Plato;
 import com.idat.repositorio.PedidoRepository;
 
 @Service
@@ -17,6 +19,9 @@ public class PedidoServicio {
 
 	@Autowired
 	private PedidoRepository repoPed;
+	
+	@Autowired
+	private PlatosServicio servPla;
 
 	public PedidoServicio() {
 	}
@@ -55,6 +60,8 @@ public class PedidoServicio {
 	}	
 
 	public Pedido crear(Pedido pedido) {
+		
+		float total = 0;
 		//Asignar Fecha de Hoy al pedido
 		Date hoy = new Date();		
 		pedido.setFecha(new java.sql.Date(hoy.getTime()));
@@ -73,7 +80,18 @@ public class PedidoServicio {
 		List<PedidoPlato> lista = pedido.getPedidoPlatoPed();
 		for(PedidoPlato i :lista) {
 			i.setPedido(idPedido);
-		}		
+			
+			//Caluclo del total
+			int cant = i.getCantidad();
+			
+			Plato plato = servPla.getPlato(i.getPlatoPed().getIdPlato());
+			float precio = plato.getPrecio().floatValue();
+			
+			total += precio*cant;			
+		}
+		
+		pedido.setTotal(BigDecimal.valueOf(total));
+		
 		return repoPed.save(pedido);
 	}
 
