@@ -62,7 +62,7 @@ public class PedidosController {
 		return new ResponseEntity<>(ped,HttpStatus.OK);
 	}	
 	
-	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(path = "/guardar" ,produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> grabarPedido(@RequestBody Pedido pedido) {
 		Pedido pedidoC = servPed.crear(pedido);
 		
